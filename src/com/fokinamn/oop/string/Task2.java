@@ -21,16 +21,19 @@ public class Task2 {
 
     private static int[] numberArray(String value) {
         value = value.replace(" ", "");
-        String numbers = "0123456789";
-        StringBuilder numberStr = new StringBuilder();
+        int count = 0;
         for (int i = 0; i < value.length(); i++) {
-            if (numbers.contains(value.substring(i, i + 1))) {
-                numberStr.append(value.charAt(i));
+            if (Character.isDigit(value.charAt(i))) {
+                count += 1;
             }
         }
-        int[] result = new int[numberStr.length()];
-        for (int i = 0; i < numberStr.length(); i++) {
-            result[i] = Integer.parseInt(String.valueOf(numberStr.charAt(i)));
+
+        int[] result = new int[count];
+        for (int i = 0, j = 0; i < value.length(); i++) {
+            if (Character.isDigit(value.charAt(i))) {
+                result[j] = Integer.parseInt(String.valueOf(value.charAt(i)));
+                j++;
+            }
         }
         return result;
     }

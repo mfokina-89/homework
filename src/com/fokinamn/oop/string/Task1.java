@@ -15,17 +15,16 @@ public class Task1 {
         System.out.println(deleteRepeat(text));
     }
 
-    private static StringBuilder deleteRepeat(String text) {
+    private static String deleteRepeat(String text) {
         String withoutSpace = text.toUpperCase().replace(" ", "");
         char currentCharacter = withoutSpace.charAt(0);
-        StringBuilder result = new StringBuilder();
-        result.append(currentCharacter);
+        StringBuilder result = new StringBuilder().append(currentCharacter);
         for (int i = 1; i < withoutSpace.length(); i++) {
             if (currentCharacter != (char) withoutSpace.charAt(i)) {
                 currentCharacter = (char) withoutSpace.charAt(i);
                 result.append(currentCharacter);
             }
         }
-        return result;
+        return String.valueOf(result);
     }
 }
