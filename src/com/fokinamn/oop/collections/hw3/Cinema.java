@@ -2,6 +2,7 @@ package com.fokinamn.oop.collections.hw3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class Cinema {
     private Map<Integer, List<Movie>> movies;
 
     public Cinema() {
-        this.movies = new HashMap<>();
+        this.movies = new LinkedHashMap<>();
     }
 
     public void addMovie(Movie movie) {
