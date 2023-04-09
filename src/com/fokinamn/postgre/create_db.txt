@@ -1,0 +1,51 @@
+CREATE DATABASE kinopoisk;
+
+CREATE TABLE director
+(
+    id         INT PRIMARY KEY,
+    full_name  VARCHAR(256) NOT NULL,
+    birth_date TIMESTAMP    NOT NULL
+);
+
+CREATE TABLE movie
+(
+    id          INT PRIMARY KEY,
+    name        VARCHAR(256)  NOT NULL,
+    genre       VARCHAR(128)  NOT NULL,
+    country     VARCHAR(128)  NOT NULL,
+    year        INT           NOT NULL,
+    director_id INT REFERENCES director (id),
+    rating      NUMERIC(8, 2) NOT NULL
+);
+
+CREATE TABLE role
+(
+    id   INT PRIMARY KEY,
+    role VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE users
+(
+    id        INT PRIMARY KEY,
+    full_name VARCHAR(256) NOT NULL,
+    password  VARCHAR(256) NOT NULL,
+    e_mail    VARCHAR(256) NOT NULL,
+    role_id   INT REFERENCES role (id)
+);
+
+CREATE TABLE review
+(
+    id       INT PRIMARY KEY,
+    movie_id INT REFERENCES movie (id) NOT NULL,
+    users_id INT REFERENCES users (id) NOT NULL,
+    text     VARCHAR(256),
+    score    INT                       NOT NULL
+);
+
+-- Отношение один ко многим
+-- режиссер -> фильмы
+-- юзер -> отзывы
+-- роль -> юзер
+--
+-- Отношение один у одному
+-- отзыв -> фильм
